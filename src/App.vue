@@ -1,7 +1,8 @@
 <template>
   <div id="app">
     <select
-      v-model="locale"
+      :value="$i18n.locale"
+      @change="changeLocale($event.target.value)"
     >
       <option
         v-for="locale in locales"
@@ -25,12 +26,6 @@ export default {
     Cart
   },
 
-  data () {
-    return {
-      locale: 'en'
-    };
-  },
-
   computed: {
     locales () {
       return ['en', 'pl'].map(locale => {
@@ -41,6 +36,12 @@ export default {
       });
     }
   },
+
+  methods: {
+    changeLocale (locale) {
+      this.$root.$i18n.locale = locale;
+    }
+  }
 }
 </script>
 

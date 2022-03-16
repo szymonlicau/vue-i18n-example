@@ -1,24 +1,15 @@
 <template>
   <div class="cart">
-    <h1>{{ locale === 'en' ? 'Your order' : 'Twoje zamówienie' }}</h1>
+    <h1> {{ $t('cart.title') }} </h1>
 
     <table class="cart__contents">
       <thead>
         <tr>
           <th> # </th>
-          <template v-if="locale === 'en'">
-            <th> Name </th>
-            <th> Each </th>
-            <th> Quantity </th>
-            <th> Total </th>
-          </template>
-
-          <template v-else>
-            <th> Nazwa </th>
-            <th> Cena </th>
-            <th> Ilość </th>
-            <th> Suma </th>
-          </template>
+          <th> {{ $t('cart.productName') }} </th>
+          <th> {{ $t('cart.productPrice') }} </th>
+          <th> {{ $t('cart.productQuantity') }} </th>
+          <th> {{ $t('cart.productTotal') }} </th>
         </tr>
       </thead>
 
@@ -43,7 +34,7 @@
           <td />
           <td />
           <td>
-            <b>{{ locale === 'en' ? 'Order Total:' : 'Suma zamówienia:' }}</b>
+            <b> {{ $t('cart.orderTotal') }} </b>
           </td>
 
           <td>
@@ -59,7 +50,7 @@
       <BaseButton
         variant="primary"
       >
-        {{ locale === 'en' ? 'Go to payment' : 'Przejdź do płatności' }}
+        {{ $t('cart.goToPayment') }}
       </BaseButton>
     </div>
   </div>
