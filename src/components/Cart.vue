@@ -21,11 +21,11 @@
           <td> {{ index + 1 }} </td>
           <td> {{ item.name }} </td>
           <td>
-            {{ formatPrice(item.price) }}
+            {{ $n(convertPrice(item.price), 'currency') }}
           </td>
           <td> {{ item.quantity }} </td>
           <td>
-            {{ formatPrice(item.quantity * item.price) }}
+            {{ $n(convertPrice(item.quantity * item.price), 'currency') }}
           </td>
         </tr>
 
@@ -38,7 +38,7 @@
           </td>
 
           <td>
-            {{ formatPrice(totalCost) }}
+            {{ $n(convertPrice(totalCost), 'currency') }}
           </td>
         </tr>
       </tbody>
@@ -62,13 +62,6 @@ import BaseButton from '@/components/BaseButton.vue';
 export default {
   components: {
     BaseButton
-  },
-
-  props: {
-    locale: {
-      type: String,
-      default: 'en'
-    }
   },
 
   computed: {
@@ -117,25 +110,17 @@ export default {
     },
 
     arrivalEstimation () {
-      const date = new Intl.DateTimeFormat(this.locale)
-        .format(this.arrivalDate);
+      const date = this.$d(this.arrivalDate);
 
-      return this.locale === 'en'
-        ? `Your order will arrive at: <b>${date}</b>`
-        : `Twoje zamówienie dotrze: <b>${date}</b>`;
+      return this.$t('cart.arrivalDate', { date });
     }
   },
 
   methods: {
-    formatPrice (price) {
-      const convertedValue = this.locale === 'en'
+    convertPrice (price) {
+      return this.$i18n.locale === 'en'
         ? price
         : price * this.dollarToPln;
-
-      return Intl.NumberFormat(this.locale, {
-        style: 'currency',
-        currency: this.locale === 'en' ? 'USD' : 'PLN'
-      }).format(convertedValue);
     }
   }
 }

@@ -9,6 +9,8 @@ export default {
 
     orderTotal: 'Order Total:',
 
+    arrivalDate: 'Your order will arrive at: <b>{date}</b>',
+
     goToPayment: 'Go to payment',
   }
 };

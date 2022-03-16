@@ -12,5 +12,19 @@ export default new VueI18n({
   messages: {
     en,
     pl
+  },
+  numberFormats: {
+    en: {
+      currency: {
+        style: 'currency',
+        currency: 'USD'
+      }
+    },
+    pl: {
+      currency: {
+        style: 'currency',
+        currency: 'PLN'
+      }
+    }
   }
 });

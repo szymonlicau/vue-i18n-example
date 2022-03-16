@@ -13,7 +13,7 @@
       </option>
     </select>
 
-    <Cart :locale="locale" />
+    <Cart />
   </div>
 </template>
 
@@ -39,6 +39,8 @@ export default {
 
   methods: {
     changeLocale (locale) {
+      // It's important to change it at the $root
+      // otherwise the change will be local
       this.$root.$i18n.locale = locale;
     }
   }
